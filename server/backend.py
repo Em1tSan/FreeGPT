@@ -20,7 +20,7 @@ max_conversation_length = args.max_conversation_length
 max_length = max_conversation_length
 
 class Backend_Api:
-    def __init__(self, app, config: dict) -> None:
+    def __init__(self, app: dict) -> None:
         """  
         Initialize the Backend_Api class.  
 
@@ -28,7 +28,7 @@ class Backend_Api:
         :param config: Configuration dictionary  
         """
         self.app = app
-        self.use_auto_proxy = config['use_auto_proxy']
+        self.use_auto_proxy = False
         self.routes = {
             '/backend-api/v2/conversation': {
                 'function': self._conversation,

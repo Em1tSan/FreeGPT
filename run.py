@@ -9,10 +9,6 @@ import socket
 
 if __name__ == '__main__':
 
-    # Load configuration from config.json
-    config = load(open('config.json', 'r'))
-    site_config = config['site_config']
-
     # Set up the website routes
     site = Website(app)
     for route in site.routes:
@@ -23,7 +19,7 @@ if __name__ == '__main__':
         )
 
     # Set up the backend API routes
-    backend_api = Backend_Api(app, config)
+    backend_api = Backend_Api(app)
     for route in backend_api.routes:
         app.add_url_rule(
             route,
@@ -33,6 +29,12 @@ if __name__ == '__main__':
 
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
+
+    site_config = {
+        'host': '0.0.0.0',
+        'port': 1338,
+        'debug': False
+    }
 
     # Run the Flask server by WSGI
     print(f"Running on http://127.0.0.1:{site_config['port']}")
