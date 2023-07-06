@@ -1,11 +1,12 @@
 version: '3.5'
 
 services:
-  freegpt-webui:
-    image: freegpt-webui
-    container_name: freegpt-webui
+  freegpt-neurogen:
+    image: freegpt-neurogen
+    container_name: freegpt-neurogen
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "1338:1338"
+      - "1337:1337"
