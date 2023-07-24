@@ -84,9 +84,11 @@ Description=Web ChatGPT
 After=network.target
 
 [Service]
-ExecStart=/opt/FreeGPT/.venv/bin/python3 /opt/FreeGPT/run.py
 WorkingDirectory=/opt/FreeGPT/
 ExecStartPre=/usr/bin/git pull
+ExecStartPre=/bin/bash -c 'cd /opt/FreeGPT/ && source .venv/bin/activate && pip install -r requirements.txt'
+ExecStart=/bin/bash -c 'cd /opt/FreeGPT/ && source .venv/bin/activate && python3 run.py'
+#ExecStart=/opt/FreeGPT/.venv/bin/python3 /opt/FreeGPT/run.py
 Restart=always
 RestartSec=10s
 User=www-data
